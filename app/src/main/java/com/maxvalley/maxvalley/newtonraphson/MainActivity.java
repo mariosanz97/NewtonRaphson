@@ -8,6 +8,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,11 +42,14 @@ public class MainActivity extends AppCompatActivity {
         series = new LineGraphSeries<DataPoint>();
 
         for (int i = 0; i < vectory.size(); i++) {
-            series.appendData(new DataPoint(2 + i, 2 + i), true, 500);
+            Collections.sort(vectorx);
+            Collections.sort(vectory);
+            series.appendData(new DataPoint(vectorx.get(i), vectory.get(i)), true, 200);
             System.out.println("x: " + vectorx.get(i) + " - y: " + vectory.get(i));
         }
 
         graph.addSeries(series);
+
         series.setDrawDataPoints(true);
         series.setDataPointsRadius(10);
         series.setThickness(8);
